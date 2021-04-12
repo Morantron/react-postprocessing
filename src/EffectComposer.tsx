@@ -55,7 +55,10 @@ const EffectComposer = React.memo(
           frameBufferType,
         })
         // Add render pass
-        effectComposer.addPass(new RenderPass(scene, camera))
+        const renderPass = new RenderPass(scene, camera)
+        renderPass.clear = false
+        effectComposer.addPass(renderPass)
+
         // Create normal pass
         const pass = disableNormalPass ? null : new NormalPass(scene, camera)
         if (pass) {
